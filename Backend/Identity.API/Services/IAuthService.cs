@@ -5,5 +5,5 @@ namespace Identity.API.Services;
 
 public interface IAuthService
 {
-    Task<AuthResponseDto> LoginAsync(LoginRequestDto request);
+    Task<AuthResponseDto?> LoginAsync(LoginRequestDto request);
 }
