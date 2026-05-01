@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Booking.API/Booking.API.csproj" />
+  <Project Path="Cast.API/Cast.API.csproj" />
+  <Project Path="Facility.API/Facility.API.csproj" />
+  <Project Path="Gateway.YARP/Gateway.YARP.csproj" />
+  <Project Path="Identity.API/Identity.API.csproj" />
+  <Project Path="Movie.API/Movie.API.csproj" />
+  <Project Path="Schedule.API/Schedule.API.csproj" />
+</Solution>

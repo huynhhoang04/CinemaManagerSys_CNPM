@@ -1,0 +1,15 @@
+[bin]/
+[oO]bj/
+*.user
+*.userosscache
+*.sln.docstates
+appsettings.Development.json
+appsettings.Local.json
+node_modules/
+dist/
+build/
+.env
+.env.local
+.vs/
+*.sqlite
+*.db

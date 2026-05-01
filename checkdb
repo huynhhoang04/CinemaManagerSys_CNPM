@@ -1,0 +1,3 @@
+docker exec -it ten -U postgres
+\c ten db
+\dt

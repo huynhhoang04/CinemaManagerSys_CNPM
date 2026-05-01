@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  # 1. Identity Service DB
+  db-identity:
+    image: postgres:15-alpine
+    container_name: pg_identity
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: identity_db
+    ports:
+      - "5431:5432"
+    volumes:
+      - pgdata_identity:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # 2. Movie Core Service DB
+  db-movie:
+    image: postgres:15-alpine
+    container_name: pg_movie
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: movie_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_movie:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # 3. Cast & Crew Service DB
+  db-cast:
+    image: postgres:15-alpine
+    container_name: pg_cast
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: cast_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata_cast:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # 4. Facility Service DB
+  db-facility:
+    image: postgres:15-alpine
+    container_name: pg_facility
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: facility_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata_facility:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # 5. Schedule Service DB
+  db-schedule:
+    image: postgres:15-alpine
+    container_name: pg_schedule
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: schedule_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata_schedule:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # 6. Booking Engine DB
+  db-booking:
+    image: postgres:15-alpine
+    container_name: pg_booking
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: booking_db
+    ports:
+      - "5436:5432"
+    volumes:
+      - pgdata_booking:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata_identity:
+  pgdata_movie:
+  pgdata_cast:
+  pgdata_facility:
+  pgdata_schedule:
+  pgdata_booking:
