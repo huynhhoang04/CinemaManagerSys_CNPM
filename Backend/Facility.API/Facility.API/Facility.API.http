@@ -1,0 +1,88 @@
+@Facility.API_HostAddress = http://localhost:5004
+
+### ═══════════════════════════════════════════════════════════
+### Theatre Controller
+### ═══════════════════════════════════════════════════════════
+
+### GET – Lấy danh sách toàn bộ cụm rạp (Public)
+GET {{Facility.API_HostAddress}}/api/theatre
+Accept: application/json
+
+###
+
+### GET – Xem chi tiết rạp theo ID (Public)
+GET {{Facility.API_HostAddress}}/api/theatre/1
+Accept: application/json
+
+###
+
+### POST – Thêm chi nhánh rạp mới (Admin)
+POST {{Facility.API_HostAddress}}/api/theatre
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "theatreName": "Galaxy Cinema Nguyễn Du",
+  "location": "116 Nguyễn Du, Q.1, TP.HCM",
+  "coordinates": "10.7726,106.6940",
+  "city": "Hồ Chí Minh"
+}
+
+###
+
+### PUT – Sửa thông tin rạp (Admin)
+PUT {{Facility.API_HostAddress}}/api/theatre/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "theatreName": "CGV Vincom Center (Cập nhật)",
+  "location": "Tầng 5, Vincom Center, 72 Lê Thánh Tôn, Q.1, TP.HCM",
+  "coordinates": "10.7769,106.7009"
+}
+
+###
+
+### ═══════════════════════════════════════════════════════════
+### Room Controller
+### ═══════════════════════════════════════════════════════════
+
+### GET – Lấy danh sách phòng chiếu theo rạp (Public)
+GET {{Facility.API_HostAddress}}/api/room/theatre/1
+Accept: application/json
+
+###
+
+### GET – Chi tiết phòng chiếu (Public)
+GET {{Facility.API_HostAddress}}/api/room/1
+Accept: application/json
+
+###
+
+### POST – Thêm phòng chiếu mới (Admin)
+POST {{Facility.API_HostAddress}}/api/room
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "theatreId": 1,
+  "roomName": "Phòng VIP",
+  "roomType": "IMAX",
+  "capacity": 50,
+  "roomStatus": "Active"
+}
+
+###
+
+### PUT – Cập nhật phòng chiếu (Admin)
+PUT {{Facility.API_HostAddress}}/api/room/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "theatreId": 1,
+  "roomName": "Phòng 1 (Renovated)",
+  "roomType": "3D",
+  "capacity": 140,
+  "roomStatus": "Active"
+}
