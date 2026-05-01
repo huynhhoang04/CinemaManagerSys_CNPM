@@ -35,4 +35,7 @@ public class Movie
     [MaxLength(100)]
     [Column("movie_status")]
     public string MovieStatus { get; set; } = string.Empty;
+
+    // Navigation property
+    public ICollection<MovieGenre> MovieGenres { get; set; } = [];
 }
