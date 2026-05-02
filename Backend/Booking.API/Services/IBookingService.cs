@@ -1,9 +1,13 @@
+using Booking.API.DTOs.Requests;
+using Booking.API.DTOs.Responses;
+
 namespace Booking.API.Services;
 
 public interface IBookingService
 {
-    Task CreateBookingAsync();
-    Task GetBookingByIdAsync(int id);
-    Task GetBookingsByUserAsync(int userId);
-    Task GetSoldSeatsByShowtimeAsync(int showtimeId);
+    Task<BookingResponseDto> CreateBookingAsync(CreateBookingRequestDto request);
+
+    Task<BookingResponseDto?> GetBookingByIdAsync(int id);
+
+    Task<IEnumerable<BookingResponseDto>> GetBookingsByUserAsync(int userId);
 }
