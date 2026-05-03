@@ -10,4 +10,8 @@ public class MovieGenre
 
     [Column("genre_id")]
     public int GenreId { get; set; }
+
+    // Navigation properties
+    public Movie Movie { get; set; } = null!;
+    public Genre Genre { get; set; } = null!;
 }
