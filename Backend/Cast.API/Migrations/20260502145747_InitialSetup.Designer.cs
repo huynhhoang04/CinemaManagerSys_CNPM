@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cast.API.Migrations
 {
     [DbContext(typeof(CastDbContext))]
-    [Migration("20260501061916_InitialSetup")]
+    [Migration("20260502145747_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />

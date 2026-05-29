@@ -14,10 +14,14 @@ public class CastDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Many-to-Many: MovieActor
         modelBuilder.Entity<MovieActor>()
             .HasKey(ma => new { ma.MovieId, ma.ActorId });
 
+        // Many-to-Many: MovieDirector
         modelBuilder.Entity<MovieDirector>()
             .HasKey(md => new { md.MovieId, md.DirectorId });
+            
+        base.OnModelCreating(modelBuilder);
     }
 }

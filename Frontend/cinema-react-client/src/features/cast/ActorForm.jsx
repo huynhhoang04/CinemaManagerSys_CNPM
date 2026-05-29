@@ -4,8 +4,8 @@ import { Modal } from '../../components/Modal';
 
 const ActorForm = ({ isOpen, onClose, actor, refreshData }) => {
     const [formData, setFormData] = useState({
-        actorName: '',
-        avatarUrl: '',
+        name: '',
+        avatar: '',
         bio: ''
     });
     const [error, setError] = useState(null);
@@ -13,12 +13,12 @@ const ActorForm = ({ isOpen, onClose, actor, refreshData }) => {
     useEffect(() => {
         if (actor) {
             setFormData({
-                actorName: actor.actorName || '',
-                avatarUrl: actor.avatarUrl || '',
+                name: actor.name || '',
+                avatar: actor.avatar || '',
                 bio: actor.bio || ''
             });
         } else {
-            setFormData({ actorName: '', avatarUrl: '', bio: '' });
+            setFormData({ name: '', avatar: '', bio: '' });
         }
         setError(null);
     }, [actor, isOpen]);
@@ -33,14 +33,14 @@ const ActorForm = ({ isOpen, onClose, actor, refreshData }) => {
         setError(null);
         try {
             if (actor) {
-                await updateActorApi(actor.actorId, formData);
+                await updateActorApi(actor.id, formData);
             } else {
                 await createActorApi(formData);
             }
             refreshData();
             onClose();
         } catch (err) {
-            setError('Thao tác thất bại');
+            setError(err.response?.data?.message || 'Thao tác thất bại');
         }
     };
 
@@ -50,11 +50,11 @@ const ActorForm = ({ isOpen, onClose, actor, refreshData }) => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="block mb-2 font-bold text-gray-700">Tên Diễn viên</label>
-                    <input type="text" name="actorName" value={formData.actorName} onChange={handleChange} className="w-full px-3 py-2 border rounded" required />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-3 py-2 border rounded" required />
                 </div>
                 <div className="mb-4">
                     <label className="block mb-2 font-bold text-gray-700">URL Ảnh đại diện</label>
-                    <input type="text" name="avatarUrl" value={formData.avatarUrl} onChange={handleChange} className="w-full px-3 py-2 border rounded" />
+                    <input type="text" name="avatar" value={formData.avatar} onChange={handleChange} className="w-full px-3 py-2 border rounded" />
                 </div>
                 <div className="mb-4">
                     <label className="block mb-2 font-bold text-gray-700">Tiểu sử (Bio)</label>

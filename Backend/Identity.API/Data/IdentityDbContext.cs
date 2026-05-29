@@ -22,17 +22,5 @@ public class IdentityDbContext : DbContext
             entity.Property(e => e.Password).IsRequired();
             entity.Property(e => e.Role).IsRequired().HasMaxLength(20);
         });
-
-        modelBuilder.Entity<User>().HasData(
-            new User
-            {
-                UserId = 1,
-                Username = "admin",
-                Password = BC.HashPassword("4105"),
-                FullName = "System Administrator",
-                Email = "admin@cinema.local",
-                Role = "Admin"
-            }
-        );
     }
 }

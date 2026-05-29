@@ -9,4 +9,11 @@ public class BookingDbContext : DbContext
 
     public DbSet<Models.Booking> Bookings { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Ticket>()
+            .HasIndex(t => new { t.ShowtimeId, t.SeatNumber })
+            .IsUnique();
+    }
 }

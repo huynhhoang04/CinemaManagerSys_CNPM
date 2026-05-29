@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.API.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20260501060435_InitialSetup")]
+    [Migration("20260502145710_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />
@@ -76,7 +76,7 @@ namespace Identity.API.Migrations
                             UserId = 1,
                             Email = "admin@cinema.local",
                             FullName = "System Administrator",
-                            Password = "$2a$11$KK40/f1RMYeN3/BfXv/G2eWoYEUZijbEhy.C.qILqaSIcXD0QFZQC",
+                            Password = "$2a$11$R9h/lIPzHZ7.3mPvA4V7OTHnNzZpCBhH.t69J5Zc.O8aZ9D.PZ4m",
                             Role = "Admin",
                             Username = "admin"
                         });

@@ -1,8 +1,12 @@
+using Facility.API.DTOs.Requests;
+using Facility.API.DTOs.Responses;
+
 namespace Facility.API.Services;
 
 public interface IRoomService
 {
-    Task GetRoomsByTheatreIdAsync(int theatreId);
-    Task CreateRoomAsync(); // Bắt buộc DTO gửi lên phải có TheatreId
-    Task UpdateRoomAsync(int id);
+    Task<IEnumerable<RoomResponseDto>> GetRoomsByTheatreIdAsync(int theatreId);
+    Task<RoomResponseDto?> GetRoomByIdAsync(int id);
+    Task<RoomResponseDto> CreateRoomAsync(RoomRequestDto dto);
+    Task<RoomResponseDto?> UpdateRoomAsync(int id, RoomRequestDto dto);
 }

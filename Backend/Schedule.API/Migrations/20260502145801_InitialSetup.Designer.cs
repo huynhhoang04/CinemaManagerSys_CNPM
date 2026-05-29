@@ -12,7 +12,7 @@ using Schedule.API.Data;
 namespace Schedule.API.Migrations
 {
     [DbContext(typeof(ScheduleDbContext))]
-    [Migration("20260501061928_InitialSetup")]
+    [Migration("20260502145801_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />

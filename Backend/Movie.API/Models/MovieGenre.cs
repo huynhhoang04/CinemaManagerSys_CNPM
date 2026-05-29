@@ -10,4 +10,7 @@ public class MovieGenre
 
     [Column("genre_id")]
     public int GenreId { get; set; }
+
+    public Movie Movie { get; set; } = null!;
+    public Genre Genre { get; set; } = null!;
 }

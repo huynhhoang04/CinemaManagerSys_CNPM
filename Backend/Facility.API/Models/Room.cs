@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Facility.API.Models;
 
-[Table("room")]
+[Table("rooms")]
 public class Room
 {
     [Key]
@@ -18,14 +18,20 @@ public class Room
     [Column("room_name")]
     public string RoomName { get; set; } = string.Empty;
 
-    [MaxLength(100)]
+    /// <summary>Loại phòng: 2D / 3D / IMAX / 4DX</summary>
+    [MaxLength(50)]
     [Column("room_type")]
     public string RoomType { get; set; } = string.Empty;
 
     [Column("capacity")]
     public int Capacity { get; set; }
 
-    [MaxLength(100)]
+    /// <summary>Trạng thái: Active / Maintenance / Inactive</summary>
+    [MaxLength(50)]
     [Column("room_status")]
-    public string RoomStatus { get; set; } = string.Empty;
+    public string RoomStatus { get; set; } = "Active";
+
+    // ── Navigation ──
+    [ForeignKey(nameof(TheatreId))]
+    public Theatre? Theatre { get; set; }
 }

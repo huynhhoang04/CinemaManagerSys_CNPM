@@ -62,24 +62,27 @@ const UserManagement = () => {
             </div>
 
             <Table 
-                headers={['ID', 'Username', 'Full Name', 'Role', 'Actions']}
+                headers={['ID', 'Username', 'Full Name', 'Email', 'Role', 'Actions']}
                 data={users}
                 renderRow={(user, index) => (
                     <>
-                        <td className="px-6 py-4">{user.userId}</td>
-                        <td className="px-6 py-4">{user.username}</td>
-                        <td className="px-6 py-4">{user.fullName}</td>
+                        <td className="px-6 py-4 text-sm text-slate-500 font-mono">#{user.id}</td>
+                        <td className="px-6 py-4 font-bold text-slate-800">{user.username}</td>
+                        <td className="px-6 py-4 text-slate-600">{user.fullname}</td>
+                        <td className="px-6 py-4 text-slate-500 text-sm">{user.email}</td>
                         <td className="px-6 py-4">
-                            <span className={`px-2 py-1 text-sm font-semibold rounded ${user.role === 'Admin' ? 'bg-purple-200 text-purple-800' : 'bg-green-200 text-green-800'}`}>
+                            <span className={`px-2 py-1 text-xs font-bold rounded-full uppercase tracking-tighter ${
+                                user.role === 'Admin' ? 'bg-purple-100 text-purple-700' : 'bg-emerald-100 text-emerald-700'
+                            }`}>
                                 {user.role}
                             </span>
                         </td>
                         <td className="px-6 py-4 space-x-2">
-                            <button onClick={() => openEditModal(user)} className="px-3 py-1 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</button>
+                            <button onClick={() => openEditModal(user)} className="px-3 py-1 text-white bg-indigo-500 rounded hover:bg-indigo-600 transition-colors text-xs font-bold uppercase">Sửa</button>
                             {user.role !== 'Admin' && (
-                                <button onClick={() => handlePromote(user.userId)} className="px-3 py-1 text-white bg-yellow-500 rounded hover:bg-yellow-600">Promote</button>
+                                <button onClick={() => handlePromote(user.id)} className="px-3 py-1 text-white bg-amber-500 rounded hover:bg-amber-600 transition-colors text-xs font-bold uppercase">Thăng cấp</button>
                             )}
-                            <button onClick={() => handleDelete(user.userId)} className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
+                            <button onClick={() => handleDelete(user.id)} className="px-3 py-1 text-white bg-rose-500 rounded hover:bg-rose-600 transition-colors text-xs font-bold uppercase">Xóa</button>
                         </td>
                     </>
                 )}

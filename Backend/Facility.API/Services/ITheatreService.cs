@@ -1,9 +1,13 @@
+using Facility.API.DTOs.Requests;
+using Facility.API.DTOs.Responses;
+
 namespace Facility.API.Services;
 
 public interface ITheatreService
 {
-    Task GetAllTheatresAsync();
-    Task GetTheatreByIdAsync(int id);
-    Task CreateTheatreAsync();
-    Task UpdateTheatreAsync(int id);
+    Task<IEnumerable<TheatreResponseDto>> GetAllTheatresAsync();
+    Task<IEnumerable<TheatreResponseDto>> GetTheatresByCityAsync(string city);
+    Task<TheatreResponseDto?> GetTheatreByIdAsync(int id);
+    Task<TheatreResponseDto> CreateTheatreAsync(TheatreRequestDto dto);
+    Task<TheatreResponseDto?> UpdateTheatreAsync(int id, TheatreRequestDto dto);
 }

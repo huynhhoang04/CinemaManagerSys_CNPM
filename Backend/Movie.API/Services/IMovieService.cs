@@ -1,10 +1,13 @@
+using Movie.API.DTOs.Requests;
+using Movie.API.DTOs.Responses;
+
 namespace Movie.API.Services;
 
 public interface IMovieService
 {
-    Task GetAllMoviesAsync();
-    Task GetMovieByIdAsync(int id);
-    Task CreateMovieAsync(); 
-    Task UpdateMovieAsync(int id);
-    Task DeleteMovieAsync(int id);
+    Task<IEnumerable<MovieResponseDto>> GetAllMoviesAsync();
+    Task<MovieResponseDto?> GetMovieByIdAsync(int id);
+    Task<MovieResponseDto> CreateMovieAsync(MovieRequestDto dto);
+    Task<MovieResponseDto?> UpdateMovieAsync(int id, MovieRequestDto dto);
+    Task<bool> DeleteMovieAsync(int id);
 }

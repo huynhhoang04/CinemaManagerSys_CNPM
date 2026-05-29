@@ -67,10 +67,14 @@ const ShowtimeForm = ({ isOpen, onClose, showtime, movies, theatres, currentRoom
         e.preventDefault();
         setError(null);
 
+        const selectedMovie = movies.find(m => m.movieId === parseInt(formData.movieId));
+        const duration = selectedMovie?.duration || 120; // Fallback 120p nếu không tìm thấy
+
         const payload = {
             movieId: parseInt(formData.movieId),
             roomId: parseInt(formData.roomId),
             started: new Date(formData.started).toISOString(),
+            durationMinutes: duration,
             price: parseFloat(formData.price)
         };
 

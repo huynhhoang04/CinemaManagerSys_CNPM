@@ -29,10 +29,17 @@ public class Movie
     [Column("duration")]
     public int Duration { get; set; }
 
+    private DateTime _releaseDate;
     [Column("release_date")]
-    public DateTime ReleaseDate { get; set; }
+    public DateTime ReleaseDate 
+    { 
+        get => _releaseDate; 
+        set => _releaseDate = value.Kind == DateTimeKind.Unspecified ? DateTime.SpecifyKind(value, DateTimeKind.Utc) : value.ToUniversalTime(); 
+    }
 
     [MaxLength(100)]
     [Column("movie_status")]
     public string MovieStatus { get; set; } = string.Empty;
+
+    public ICollection<MovieGenre> MovieGenres { get; set; } = [];
 }

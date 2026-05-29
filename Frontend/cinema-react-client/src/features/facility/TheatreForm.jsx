@@ -54,7 +54,10 @@ const TheatreForm = ({ isOpen, onClose, theatre, refreshData }) => {
     };
 
     const handleAddRoomLocal = () => {
-        if (!newRoom.roomName || newRoom.capacity <= 0) return;
+        if (!newRoom.roomName || newRoom.capacity <= 0) {
+            alert("Vui lòng nhập đầy đủ Tên và Sức chứa (> 0)");
+            return;
+        }
         setRooms([...rooms, { ...newRoom, tempId: Date.now() }]);
         setNewRoom({ roomName: '', roomType: '2D', capacity: 0, roomStatus: 'Active' });
     };
@@ -88,10 +91,18 @@ const TheatreForm = ({ isOpen, onClose, theatre, refreshData }) => {
             }
 
             for (let room of rooms) {
+                const roomPayload = {
+                    theatreId: currentTheatreId,
+                    roomName: room.roomName,
+                    roomType: room.roomType,
+                    capacity: parseInt(room.capacity),
+                    roomStatus: room.roomStatus
+                };
+
                 if (room.roomId) {
-                    await updateRoomApi(room.roomId, { ...room, theatreId: currentTheatreId });
+                    await updateRoomApi(room.roomId, roomPayload);
                 } else {
-                    await createRoomApi({ ...room, theatreId: currentTheatreId });
+                    await createRoomApi(roomPayload);
                 }
             }
 
@@ -130,11 +141,23 @@ const TheatreForm = ({ isOpen, onClose, theatre, refreshData }) => {
                         <label className="block mb-1 font-bold text-gray-700">Địa chỉ cụ thể</label>
                         <input type="text" name="location" value={theatreData.location} onChange={handleTheatreChange} className="w-full px-3 py-2 border rounded" required />
                     </div>
+                    <div className="col-span-2">
+                        <label className="block mb-1 font-bold text-gray-700">Link ảnh đại diện (Preview URL)</label>
+                        <input type="text" name="previewUrl" value={theatreData.previewUrl} onChange={handleTheatreChange} className="w-full px-3 py-2 border rounded" placeholder="https://..." />
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-bold text-gray-700">Tọa độ (Lat, Lng)</label>
+                        <input type="text" name="coordinates" value={theatreData.coordinates} onChange={handleTheatreChange} className="w-full px-3 py-2 border rounded" placeholder="10.123, 106.456" />
+                    </div>
+                    <div className="col-span-2">
+                        <label className="block mb-1 font-bold text-gray-700">Thông tin thêm (Info)</label>
+                        <textarea name="info" value={theatreData.info} onChange={handleTheatreChange} className="w-full px-3 py-2 border rounded" rows="2" placeholder="Mô tả rạp..."></textarea>
+                    </div>
                 </div>
 
                 <h3 className="pb-2 mb-4 text-lg font-bold border-b text-slate-800">2. Quản lý Phòng chiếu</h3>
                 <div className="p-4 mb-4 bg-gray-50 rounded-xl">
-                    <div className="grid grid-cols-5 gap-2 mb-2 text-sm font-bold text-gray-600">
+                    <div className="grid grid-cols-5 gap-2 mb-2 text-xs font-bold text-gray-600">
                         <div className="col-span-2">Tên Phòng</div>
                         <div>Loại</div>
                         <div>Sức chứa</div>
@@ -142,7 +165,7 @@ const TheatreForm = ({ isOpen, onClose, theatre, refreshData }) => {
                     </div>
                     <div className="grid grid-cols-5 gap-2 mb-4">
                         <div className="col-span-2">
-                            <input type="text" name="roomName" value={newRoom.roomName} onChange={handleNewRoomChange} placeholder="Tên phòng..." className="w-full px-2 py-1 border rounded" />
+                            <input type="text" name="roomName" value={newRoom.roomName} onChange={handleNewRoomChange} placeholder="Tên..." className="w-full px-2 py-1 border rounded" />
                         </div>
                         <div>
                             <select name="roomType" value={newRoom.roomType} onChange={handleNewRoomChange} className="w-full px-2 py-1 border rounded">
@@ -159,12 +182,12 @@ const TheatreForm = ({ isOpen, onClose, theatre, refreshData }) => {
 
                     <div className="space-y-2">
                         {rooms.map((room, index) => (
-                            <div key={room.roomId || room.tempId} className="grid items-center grid-cols-5 gap-2 px-2 py-2 bg-white border rounded">
-                                <div className="col-span-2 font-semibold text-gray-800">{room.roomName}</div>
+                            <div key={room.roomId || room.tempId} className="grid items-center grid-cols-5 gap-2 px-2 py-2 bg-white border rounded text-sm">
+                                <div className="col-span-2 font-semibold text-gray-800 truncate">{room.roomName}</div>
                                 <div className="text-gray-600">{room.roomType}</div>
-                                <div className="text-gray-600">{room.capacity} ghế</div>
+                                <div className="text-gray-600">{room.capacity}</div>
                                 <div>
-                                    <button type="button" onClick={() => handleRemoveRoomLocal(index, room)} className="px-2 py-1 text-xs text-white bg-red-500 rounded hover:bg-red-600">Xóa</button>
+                                    <button type="button" onClick={() => handleRemoveRoomLocal(index, room)} className="px-2 py-1 text-[10px] text-white bg-red-500 rounded hover:bg-red-600">Xóa</button>
                                 </div>
                             </div>
                         ))}

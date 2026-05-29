@@ -1,6 +1,8 @@
+using Movie.API.DTOs.Responses;
+
 namespace Movie.API.Services;
 
 public interface IGenreService
 {
-    Task GetAllGenresAsync();
+    Task<IEnumerable<GenreResponseDto>> GetAllGenresAsync();
 }

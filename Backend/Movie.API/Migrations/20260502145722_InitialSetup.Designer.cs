@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Movie.API.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20260501061852_InitialSetup")]
+    [Migration("20260502145722_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />
