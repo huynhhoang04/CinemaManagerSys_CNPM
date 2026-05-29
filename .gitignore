@@ -1,0 +1,47 @@
+# Compiled class files
+out/
+*.class
+
+# JAR files
+*.jar
+!lib/*.jar
+
+# Log files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+.settings/
+.project
+.classpath
+nbproject/
+nbdist/
+nbbuild/
+build/
+
+# Generated tickets
+Tickets/
+
+# Config (contains DB credentials)
+config.properties
+
+# Test files
+TestBtn.java
+TestCast.java
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
